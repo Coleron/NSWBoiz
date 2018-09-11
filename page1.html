@@ -1,111 +1,79 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<link rel="stylesheet" type="text/css" href="style.css"/>
-<title>My first website</title>
+    <meta charset='utf-8' />
+    <title>Christian Household Income (Weekly)</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+    <script src='./data.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position: absolute; top:0px; left:0px; bottom:0px; width:100%; }
+    </style>
 </head>
-
 <body>
+    
 
  <div class="topnav" id="myTopnav">
  <a href="index.html">Home</a>
   <a href="page1.html">Jeddah Economic City</a>
   <a href="page2.html">Sidewalk Labs</a>
 
- </div>
+</div>
 
-
-<h1>Jeddah Economic City</h1>
-
- <h2>Overview</h2>
- <p>
- Jeddah Economic City or Kingdom City is a unique urban development positioned on the <br>
- north east coastline of Jeddah, Saudi Arabia, led by the Jeddah Economic Company, <br>
- with an aim of promoting Jeddah as a smart city and improving community interaction. <br>
- The designated land is over five million square meters in area and is aimed to become a smartly <br>
- planned, multilayered network of business, tourism and recreational areas by 2026.
-<br><br><br>
- 
-<p>Jeddah Tower <br><br>
-Jeddah tower will become the CenterPoint of Jeddah Economic City and will erect to a record high 1000m. <br>
- This “wonder of the world” will draw tourism to the city, whilst also functioning as a <br>
- vertically integrated business area, residential area, commercial area, hotel and recreational area. <br>
- Despite Jeddah Tower’s undebatable magnificence, many local communities see this as aesthetically <br>
- unjustified as it does not visually relate and acknowledge the surrounding landscape. <br>
- </p>
- 
-<img src="jeddah tower.png" alt="image missing!" style="width:45%" />
-<br><br><br><br>
- 
- <p>Transportation networks<br><br>
-
-Jeddah economic city will be an efficient city to commute through, as both a multifaceted <br>
-underground metro system and an above ground light rail system will be installed.         <br>
- </p>  
-  
-<img src="transport.png" alt="image missing!" style="width:45%" />
-<br><br><br><br>
-  
- <p> Vertical transportation<br><br>
-  
-As Jeddah Tower and many of its neighbouring skyscrapers will be excessively tall, Jeddah economic <br>
-  group and its design team have developed a vast network of maglev elevators that will be efficient in <br> 
-  transporting not only people but also infrastructure vertically. <br> 
- </p>
-  
-<img src="elevator.png" alt="image missing!" style="width:45%" />
-<br><br><br><br>
- 
- <p>Integration of Urban Space<br><br>
- 
-Jeddah tower and the city surrounding it will plan to use its space strategically to form multipurpose <br>
-  areas that promote community interaction. <br>
- </p>
- 
-<img src="puzzle.png" alt="image missing!" style="width:45%" />
-<br><br><br><br>
- 
- <p>Interactive Information<br><br>
- 
-Since Jeddah economic city will serve largely as a tourist destination, installations of interactive <br> 
-  information interfaces will be scattered within public areas for guidance and convenience.         <br>
-  
- </p>
- 
-<img src="interactive for jeddah.png" alt="image missing!" style="width:30%" />
-<br><br><br><br> 
- 
- <p>Creating a CBD.<br><br>
- Jeddah currently does not have a Central Business Centre and most of its urban activity is scattered <br>
-  amongst the city’s vast area. The creation of Jeddah Economic city will serve Jeddah as a new CBD, <br>
-  where people collectively and commonly interact with each over within a well-planned urban environment. <br>
-  To those whom will use this area as a working environment, this will be advantageous <br>
-  as it provides a stable and connected business network that nurtures growth, efficiency and <br>
-  integration. Opposingly, the area of the site was previously owned by local communities that will <br>
-  now have to either leave and adapt to a new area or stay and adapt to a busy and populated community. <br>
- 
- </p>
- 
-<img src="city center.png" alt="image missing!" style="width:50%" />
- 
- <br>
- 
- <h2>Measurement of Success</h2>
- <p> 
-As one of Jeddah Economic City’s main goal is to increase tourism in the area, to prove success <br>
-  tourism revenue statistics may need to be collected and analysed, to see whether the investment <br>
-  was profitable. Furthermore, Jeddah Economic Company can collect transportation data to <br>
-  determine the success of its newly installed transport networks and can also analyse HDI <br>
-  (Human Development Index) data to prove its success in increasing quality of life. <br>
-  
- </p>
- <br>
- 
-<footer> 
-<a href="https://github.com/Coleron/Fresh-Men"> Da Boiz</a>
-</footer>
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+    center: [151.004105, -33.813002], // starting position [lng, lat]
+    pitch: 45,
+    bearing: -17.6,
+    zoom: 9 // starting zoom
+});
+map.on('load', function() {
+    map.addLayer({
+        "id": "data",
+        "type": "fill-extrusion",
+        "source": {
+        	'type': 'geojson',
+        	'data': data
+        },
+           'paint': {
+                'fill-extrusion-color' : {
+                   'property': 'Christ',
+                    "stops":[
+                    	[0, '#B2DEE6'],
+                    	[112, '#9DC6CE'],
+                        [250, '#88B5BF'],
+                        [338,'#62929B'],
+                        [436, '#3F7484'],
+                        [635, '#2B687A'],
+                        [1160, '#155A6F'],
+                        [2428, '#044D64'],
+                        [10000, '#003A4B']
+                    ]
+                    
+                },
+                'fill-extrusion-height' : {
+                    'property': 'Inco',
+                    "stops":[
+                        [0, 0], 
+                    	[10, 1000],
+                        [20, 2000],
+                        [30, 3000],
+                        [50, 6000],
+                        [200,20000],
+                        [380,38000]
+                    ]
+                },
+                 'fill-extrusion-opacity': 1
+            }
+    });
+});
+</script>
 
 </body>
-
 </html>
