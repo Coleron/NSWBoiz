@@ -3,25 +3,19 @@
 <head>
     <meta charset='utf-8' />
     <title>Christian Household Income (Weekly)</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
     <script src='./data.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <style>
-         body { margin:0; padding:0; }
-        #map { position:fixed; left: 0; right:25%; bottom:0; height:75%; 
+        body { margin:0; padding:0; }
+        #map { position: absolute; top:0px; left:0px; bottom:0px; width:100%; }
     </style>
 </head>
-   
-    <body>
-        
- <div class="topnav" id="myTopnav">
- <a href="index.html">Home</a>
- <a href="page1.html">Expanded Map</a>
- <a href="page2.html">Expanded Boi</a>
 
-</div>        
+</div>
+    
+    <body>
     
 <div id='map'></div>
 <script>
@@ -46,7 +40,7 @@ map.on('load', function() {
                 'fill-extrusion-color' : {
                    'property': 'Christ',
                     "stops":[
-                    	[0, 'black'],                   
+                    	[0, 'silver'],                   
                         [500, 'orange']
                     ]
                     
