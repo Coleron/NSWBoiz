@@ -5,7 +5,7 @@
     <title>Christian Household Income (Weekly)</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
-    <script src='./dataa.js'></script> 
+    <script src='./data.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
@@ -18,7 +18,6 @@
     <body>
     
 <div id='map'></div>
-        
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
 var map = new mapboxgl.Map({
@@ -31,25 +30,25 @@ var map = new mapboxgl.Map({
 });
 map.on('load', function() {
     map.addLayer({
-        "id": "dataa",
+        "id": "data",
         "type": "fill-extrusion",
         "source": {
         	'type': 'geojson',
-        	'data': dataa
+        	'data': data
         },
            'paint': {
                 'fill-extrusion-color' : {
-                   'property': '2016Census_G14_NSW_SA1_Islam_P',
+                   'property': 'Christ',
                     "stops":[
-                    	[0, 'white'],                    
-                      [500, 'orange']
+                    	[0, 'silver'],                   
+                        [500, 'orange']
                     ]
                     
                 },
                 'fill-extrusion-height' : {
-                    'property': '2016Census_G29_NSW_SA1_Tot_Tot',
+                    'property': 'Inco',
                     "stops":[
-                        [0.2, 0], 
+                        [0, 0], 
                         [696, 1743]                    
                     ]
                 },
