@@ -6,10 +6,13 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
     <script src='./data.js'></script>
+    <script src='./dataa.js'></script> 
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
-        #map { position: absolute; top:0px; left:0px; bottom:0px; width:100%; }
+        #map { width: 50%; height: 400px; float: left
+        #map2 { width: 50%; height: 400px; margin-left:
+            50%}
     </style>
 </head>
 
@@ -23,6 +26,8 @@
     <body>
     
 <div id='map'></div>
+<div id='map2'></div>
+        
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFkZWxlaW5lam9oYW5zb24iLCJhIjoiY2lzczduYzJ4MDZrODJucGh0Mm1xbmVxNCJ9.i7q4iT8FFgh_y5v4we5UhQ';
 var map = new mapboxgl.Map({
@@ -53,7 +58,7 @@ map.on('load', function() {
                 'fill-extrusion-height' : {
                     'property': 'Inco',
                     "stops":[
-                        [0, 0], 
+                        [0.2, 0], 
                         [696, 1743]                    
                     ]
                 },
@@ -65,3 +70,41 @@ map.on('load', function() {
 
 </body>
 </html>
+
+var maptwo = new mapboxgl.Map({
+    container: 'map2', // container id
+    style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+    center: [151.004105, -33.813002], // starting position [lng, lat]
+    pitch: 45,
+    bearing: -17.6,
+    zoom: 9 // starting zoom
+});
+maptwo.on('load', function() {
+    maptwo.addLayer({
+        "id": "dataa",
+        "type": "fill-extrusion",
+        "source": {
+        	'type': 'geojson',
+        	'data': dataa
+        },
+           'paint': {
+                'fill-extrusion-color' : {
+                   'property': '2016Census_G14_NSW_SA1_Islam_P',
+                    "stops":[
+                    	[0, 'white'],                    
+                      [500, 'blue']
+                    ]
+                    
+                },
+                'fill-extrusion-height' : {
+                    'property': '2016Census_G29_NSW_SA1_Tot_Tot',
+                    "stops":[
+                        [0.2, 0], 
+                        [309, 566]                    
+                    ]
+                },
+                 'fill-extrusion-opacity': 1
+            }
+    });
+});
+
